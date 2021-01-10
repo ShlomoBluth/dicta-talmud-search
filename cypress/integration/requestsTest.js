@@ -28,7 +28,7 @@ describe('RequestsTest',()=>{
   ' of talmud search page in english mode',()=>{
     cy.talmudSearchRequest({
       language:'English',
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר',
+      message:'Server error. Please try again later',
       delaySeconds: 60*5
     })
   })
@@ -47,7 +47,7 @@ describe('RequestsTest',()=>{
     cy.talmudSearchRequest({
       language:'English',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'Server error. Please try again later'
     })
   })
 
