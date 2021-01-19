@@ -40,7 +40,7 @@ describe('DevelopmentVersionRequestsTests',()=>{
       url:'/textAnalysis',
       language:'Hebrew',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר'
     })
   })
 
@@ -83,7 +83,7 @@ describe('DevelopmentVersionRequestsTests',()=>{
       url:'/search',
       language:'Hebrew',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר'
     })
   })
 
@@ -123,7 +123,7 @@ describe('DevelopmentVersionRequestsTests',()=>{
       url:'/books',
       language:'Hebrew',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר'
     })
   })
 
@@ -163,7 +163,7 @@ describe('DevelopmentVersionRequestsTests',()=>{
       url:'/wordforms',
       language:'Hebrew',
       status:500,
-      message:'לא ניתן לגשת כעת לשרת, נסה שוב מאוחר יותר'
+      message:'אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר'
     })
   })
 
