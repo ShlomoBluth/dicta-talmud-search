@@ -2,7 +2,7 @@
 
 ////run tests on requests from talmud search run some in hebrew mode and english mode
 
-describe('RequestsTest',()=>{
+describe('DevelopmentVersionRequestsTests',()=>{
 
     
     before(() => {
