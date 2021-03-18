@@ -1,10 +1,8 @@
 
 
-Cypress.Commands.add('searchRun',(text)=>{
-  cy.get('input[id="search_box"]').type(text)
-  cy.get('button[id="mobile_search_button"]').click({force:true})
+Cypress.Commands.add('clickNikud',()=>{
+  cy.get('[class*="text-select f-narkis"] > :nth-child(2)').click()
 })
-
 
 Cypress.Commands.add('resultsTests',(text)=>{
   cy.get('[class*="loader"]').should('not.exist')

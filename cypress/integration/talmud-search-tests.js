@@ -12,139 +12,141 @@ describe('talmud-search-tests',()=>{
      })
     
 
-    // it('Run search in hebrew mode',()=>{
-    //     cy.searchRun({text:'משה קבל תורה מסיני',collection:'תלמוד',language:'Hebrew'})
-    //     //cy.searchRun('משה קבל תורה מסיני')
-    //     //cy.get('.search-form > .form-control').should('contain','/^משה קבל תורה מסיני$/')
-    //     cy.resultsTests('משֶׁה קִבֵּל תּוֹרָה מִסִּינַי')
-    // })
+    it('Run search in hebrew mode',()=>{
+        cy.searchRun({text:'משה קבל תורה מסיני',collection:'תלמוד',language:'Hebrew'})
+        cy.resultsTests('משֶׁה קִבֵּל תּוֹרָה מִסִּינַי')
+    })
 
-    // it('Run search in english mode',()=>{
-    //     cy.searchRun({text:'משה קבל תורה מסיני',collection:'תלמוד',language:'English'})
-    //     // cy.setLanguageMode('English')
-    //     // cy.searchRun('משה קבל תורה מסיני')
-    //     cy.resultsTests('משֶׁה קִבֵּל תּוֹרָה מִסִּינַי')
-    // })
+    it('Run search in english mode',()=>{
+        cy.searchRun({text:'משה קבל תורה מסיני',collection:'תלמוד',language:'English'})
+        cy.resultsTests('משֶׁה קִבֵּל תּוֹרָה מִסִּינַי')
+    })
 
-    // it('Each result contains at least one word form of each search word',()=>{
-    //     cy.searchRun({text:'משה קבל תורה',collection:'תלמוד',language:'Hebrew'})
-    //     cy.showAllWordForms()
-    //     cy.eachSelectedWordFormMatrix().then(selectedWordFormMatrix=>{
-    //         //For the first word in the search has 8 words form
-    //         expect(selectedWordFormMatrix[0].length).eq(8)
-    //         //For the second word in the search has 15 words form
-    //         expect(selectedWordFormMatrix[1].length).eq(15)
-    //         //For the thired word in the search has 8 words form
-    //         expect(selectedWordFormMatrix[2].length).eq(8)
-    //         cy.resultPagination({
-    //             tests:'wordForms',
-    //             data:selectedWordFormMatrix
-    //         })
-    //     })
-    // })
+    it('Each result contains at least one word form of each search word',()=>{
+        cy.searchRun({text:'משה קבל תורה',collection:'תלמוד',language:'Hebrew'})
+        cy.showAllWordForms()
+        cy.eachSelectedWordFormMatrix().then(selectedWordFormMatrix=>{
+            //For the first word in the search has 8 words form
+            expect(selectedWordFormMatrix[0].length).eq(8)
+            //For the second word in the search has 15 words form
+            expect(selectedWordFormMatrix[1].length).eq(15)
+            //For the thired word in the search has 8 words form
+            expect(selectedWordFormMatrix[2].length).eq(8)
+            cy.resultPagination({
+                tests:'wordForms',
+                data:selectedWordFormMatrix
+            })
+        })
+    })
 
     it('Removal of word form',()=>{
         cy.searchRun({text:'משה קבל תורה',collection:'תלמוד',language:'Hebrew'})
         cy.showAllWordForms()
         //The number in the top has 17
         cy.get('.f > span > :nth-child(2)').should('contain',17)
-        //Removal of משה
-        cy.get('li').contains('משה').within(()=>{
+        //Removal of למשה
+        cy.get('li').contains('למשה').within(()=>{
             cy.get('[type="checkbox"]').uncheck({force: true})
         })
         cy.get('[class*="loader"]').should('not.exist')
-        //The number in the top has 10
-        cy.get('.f > span > :nth-child(2)').should('contain',10)
+        //The number in the top has 16
+        cy.get('.f > span > :nth-child(2)').should('contain',16)
         cy.eachSelectedWordFormMatrix().then(selectedWordFormMatrix=>{
-            //For the first word in the search has 11 words form    
-            expect(selectedWordFormMatrix[0].length).eq(11)
-            //For the second word in the search has 2 words form
-            expect(selectedWordFormMatrix[1].length).eq(2)
+            //For the first word in the search has 7 words form    
+            expect(selectedWordFormMatrix[0].length).eq(7)
+           //For the second word in the search has 15 words form
+           expect(selectedWordFormMatrix[1].length).eq(15)
+           //For the thired word in the search has 8 words form
+           expect(selectedWordFormMatrix[2].length).eq(8)
             cy.resultPagination({
                 tests:'wordForms',
                 data:selectedWordFormMatrix
             })
         })
-        //Check of משה
-        cy.get('li').contains('משה').within(()=>{
+        //Check of למשה
+        cy.get('li').contains('למשה').within(()=>{
             cy.get('[type="checkbox"]').check({force: true})
         })
     })
         
        
     
-    // it('Each word form appears in the results as the number of times it has been written next to word form',()=>{
-    //     cy.searchRun({text:'צבי',collection:'תלמוד',language:'Hebrew'})
-    //     cy.showAllWordForms()
-    //     cy.wordFormsWithNumberOfAppearances()
-    // })
+    it('Each word form appears in the results as the number of times it has been written next to word form',()=>{
+        cy.searchRun({text:'כמאן סבירא להו',collection:'תלמוד',language:'Hebrew'})
+        cy.showAllWordForms()
+        cy.wordFormsWithNumberOfAppearances()
+    })
 
-    // it('A pair of words that come one after the other',()=>{
-    //     cy.searchRun({text:'שלום בית',collection:'תלמוד',language:'Hebrew'})
-    //     //Number of results
-    //     cy.get('.f > span > :nth-child(2)').then($numberOfResults=>{
-    //         expect(parseInt($numberOfResults.text())).to.eq(116)
-    //     })
-    //     cy.get('input[class*="search-form-control"]').clear({force:true})
-    //     .type('"שלום בית"',{force:true})
-    //     cy.get('[class*="fa-search text"]').click({force:true})
-    //     cy.get('[class*="loader"]').should('not.exist')
-    //     //Number of results
-    //     cy.get('.f > span > :nth-child(2)').then($numberOfResults=>{
-    //         expect(parseInt($numberOfResults.text())).to.eq(2)
-    //     }).then(()=>{
-    //         cy.showAllWordForms()
-    //         cy.consecutiveWordsFormsArray().then(consecutiveWordFormsArray=>{
-    //             cy.resultPagination({
-    //                 tests:'wordFormsConsecutive',
-    //                 data:consecutiveWordFormsArray
-    //             })
-    //         })
-    //     })
-    // })
+    it('A pair of words that come one after the other',()=>{
+        cy.searchRun({text:'שלום בית',collection:'תלמוד',language:'Hebrew'})
+        //Number of results
+        cy.get('.f > span > :nth-child(2)').then($numberOfResults=>{
+            expect(parseInt($numberOfResults.text())).to.eq(198)
+        })
+        cy.get('input[class*="search-form-control"]').clear({force:true})
+        .type('"שלום בית"',{force:true})
+        cy.get('[class*="fa-search text"]').click({force:true})
+        cy.get('[class*="loader"]').should('not.exist')
+        //Number of results
+        cy.get('.f > span > :nth-child(2)').then($numberOfResults=>{
+            expect(parseInt($numberOfResults.text())).to.eq(6)
+        }).then(()=>{
+            cy.showAllWordForms()
+            cy.consecutiveWordsFormsArray().then(consecutiveWordFormsArray=>{
+                cy.resultPagination({
+                    tests:'wordFormsConsecutive',
+                    data:consecutiveWordFormsArray
+                })
+            })
+        })
+    })
 
-    // it('Each result contains the specific word',()=>{
-    //     cy.searchRun({text:'לַאֲרָיֹות',collection:'תלמוד',language:'Hebrew'})
-    //      cy.resultPagination({
-    //         tests: 'specific search',
-    //         data:'לַאֲרָיֹות'
-    //      })
-    //  })
+    it('Each result contains the specific word',()=>{
+        cy.searchRun({text:'לאריות',collection:'תלמוד',language:'Hebrew'})
+        cy.clickNikud()
+         cy.resultPagination({
+            tests: 'specific search',
+            data:'לאריות'
+         })
+        cy.clickNikud()
+     })
 
     
 
    
 
-    // it('Each book appears in the results as the number of times it has been written next to book',()=>{
-    //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
-    //     cy.showBooks()
-    //     cy.selectedBooksMap().then(selectedBooks=>{
-    //         //Number of books is 7    
-    //         expect(selectedBooks.size).eq(7)
-    //         cy.resultPagination({
-    //             tests:'books',
-    //             data:selectedBooks
-    //         })
-    //     })
-    // })
+    it('Each book appears in the results as the number of times it has been written next to book',()=>{
+        cy.searchRun({text:'דהכי אשכחן',collection:'תלמוד',language:'Hebrew'})
+        cy.showBooks()
+        cy.selectedBooksMap().then(selectedBooks=>{
+            //Number of books is 12    
+            expect(selectedBooks.size).eq(12)
+            cy.resultPagination({
+                tests:'books',
+                data:selectedBooks
+            })
+        })
+    })
 
-    // it('Removal of book',()=>{
-    //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
-    //     cy.showBooks()
-    //     //remove book שמות
-    //     cy.get('[class="slide-li"]').contains('ספר שמות').within(()=>{
-    //         cy.get('[type="checkbox"]').uncheck({force: true})
-    //         cy.get('[type="checkbox"]').should('not.be.checked')
-    //     })
-    //     cy.selectedBooksMap().then(selectedBooks=>{
-    //         //Number of books is 6
-    //         expect(selectedBooks.size).eq(6)
-    //         cy.resultPagination({
-    //             tests:'books',
-    //             data:selectedBooks
-    //         })
-    //     })
-    // })
+    it('Removal of book',()=>{
+        cy.searchRun({text:'דהכי אשכחן',collection:'תלמוד',language:'Hebrew'})
+        cy.showBooks()
+        //remove book שבת
+        cy.get('[class="slide-li"]').contains(' מסכת שבת').within(()=>{
+            cy.get('[type="checkbox"]').uncheck({force: true})
+            cy.get('[type="checkbox"]').should('not.be.checked')
+        })
+        cy.selectedBooksMap().then(selectedBooks=>{
+            //Number of books is 11
+            expect(selectedBooks.size).eq(11)
+            cy.resultPagination({
+                tests:'books',
+                data:selectedBooks
+            })
+        })
+    })
+
+    //////////////////////////////////////////////////////////////////////////////////////
 
     // it('Each result has at least one meaning of each search word',()=>{
     //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
@@ -245,22 +247,55 @@ describe('talmud-search-tests',()=>{
     //     })
     // })
 
+    /////////////////////////////////////////////////////////////////////////////
+
+    it('Search with root words',()=>{
+        cy.searchRun({text:'ברא',collection:'תלמוד',language:'Hebrew'})
+        cy.clickNikud()
+        cy.existsInResult('ויברא')
+    })
+
+    it('Search full spelling and also get partial spelling results',()=>{
+        cy.searchRun({text:'דויד',collection:'תלמוד',language:'Hebrew'})
+        cy.existsInResult('דוד')
+    })
+
+    it('Search partial spelling and also get full spelling results',()=>{
+        cy.searchRun({text:'תקו',collection:'תלמוד',language:'Hebrew'})
+        cy.existsInResult('תיקו')
+    })
+
+    it('Search a word that ends with א and also get that word that ends with ה',()=>{
+        cy.searchRun({text:'נפקה מינא',collection:'תלמוד',language:'Hebrew'})
+        cy.existsInResult('נפקא')
+    })
+
+    it('Search a word that ends with ה and also get that word that ends with א',()=>{
+        cy.searchRun({text:'נפקה מינא',collection:'תלמוד',language:'Hebrew'})
+        cy.existsInResult('מינה')
+    })
+
+    it('Search a word that ends with ן and also get that word that ends with ם',()=>{
+        cy.searchRun({text:'חיטים',collection:'תנ"ך',language:'Hebrew'})
+        cy.existsInResult('חִטִּין') 
+    })
+
+    //clarify
+    // it('Search a word that ends with ן and also get that word that ends with ם',()=>{
+    //     cy.searchRun({text:'חִטִּין',collection:'תנ"ך',language:'Hebrew'})
+    //     cy.existsInResult('חיטים') 
+    // })
+
+    it('Search a word and also get that word with addition',()=>{
+        cy.searchRun({text:'מאן דאמר',collection:'תלמוד',language:'Hebrew'})
+        cy.existsInResult('כמאן')
+    })
+
     
 
-    // it('Search with root words',()=>{
-    //     cy.searchRun({text:'ברא',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('וַיִּבְרָא')
-    // })
+    
 
-    // it('search full spelling and also get partial spelling results',()=>{
-    //     cy.searchRun({text:'דָּוִיד',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('דָוִד')
-    // })
 
-    // it('search partial spelling and also get full spelling results',()=>{
-    //     cy.searchRun({text:'דָוִד',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('דָּוִיד')
-    // })
 
     // // it('Second person',()=>{
     // //     cy.searchRun({text:'אֹתְכָה',collection:'תלמוד',language:'Hebrew'})
@@ -268,8 +303,8 @@ describe('talmud-search-tests',()=>{
     // // })
 
     // it('Different suffixes second person that does not end with "ה"',()=>{
-    //     cy.searchRun({text:'אֹותְךָ',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('אֹתְכָה')
+    //     cy.searchRun({text:'אותך',collection:'תלמוד',language:'Hebrew'})
+    //     cy.existsInResult('אותכה')
     // })
 
     // // it('Second person, female',()=>{
@@ -278,8 +313,8 @@ describe('talmud-search-tests',()=>{
     // // })
 
     // it('Different suffixes second person, female that does not end with "ה"',()=>{
-    //     cy.searchRun({text:'גַּרְתָּ',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('גַּרְתָּה')
+    //     cy.searchRun({text:'גרת',collection:'תלמוד',language:'Hebrew'})
+    //     cy.existsInResult('גרתה')
     // })
 
     // // it('Third person',()=>{
@@ -293,8 +328,8 @@ describe('talmud-search-tests',()=>{
     // })
 
     // it('Search additional א and also get missing א results',()=>{
-    //     cy.searchRun({text:'ונטמאתם',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('וְנִטְמֵתֶם')
+    //     cy.searchRun({text:'רצאתי',collection:'תלמוד',language:'Hebrew'})
+    //     cy.existsInResult('רציתי')
     // })
 
     // it('Search missing א and also get additional א results',()=>{
@@ -323,23 +358,22 @@ describe('talmud-search-tests',()=>{
     // // })
 
     // it('Interchangeable letters',()=>{
-    //     cy.searchRun({text:'וארסתיך',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('וְאֵרַשְׂתִּיךְ') 
+    //     cy.searchRun({text:'ארסתיך',collection:'תלמוד',language:'Hebrew'})
+    //     cy.existsInResult('ארשתיך') 
     // })
 
-    // it('Different ways the bible refers to G-d',()=>{
-    //     cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('הָאֱלֹהִים')
-    //     // cy.searchRun({text:'ה\'',language:'Hebrew'})
-    //     // cy.existsInResult('הָאֱלֹהִים')
-    // })
+    it('Different ways the bible refers to G-d',()=>{
+        cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
+        cy.existsInResult('האלהים')
+        // cy.searchRun({text:'ה\'',language:'Hebrew'})
+        // cy.existsInResult('הָאֱלֹהִים')
+    })
 
-    // it('Search with numbers',()=>{
-    //     cy.searchRun({text:'127',collection:'תלמוד',language:'Hebrew'})
-    //     cy.existsInResult('מֵאָה')
-    //     cy.existsInResult('וְעֶשְׂרִים')
-    //     cy.existsInResult('וְשֶׁבַע')
-    // })
+    it('Search with numbers',()=>{
+        cy.searchRun({text:'4',collection:'תלמוד',language:'Hebrew'})
+        cy.contains('אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',{timeout:60000})
+        .should('be.visible')
+    })
 
     // const downloadsFolder = Cypress.config('downloadsFolder')
 

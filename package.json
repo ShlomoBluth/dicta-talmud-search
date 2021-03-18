@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/ShlomoBluth/dicta-talmud-search#readme",
   "devDependencies": {
-    "cypress": "^6.2.1"
+    "cypress": "^6.8.0"
   }
 }

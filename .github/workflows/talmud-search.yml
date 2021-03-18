@@ -17,7 +17,7 @@ jobs:
           submodules: true
 
       - name: Chrome browser tests
-        run: npx cypress run --browser chrome --spec ./cypress/integration/bible-search-tests.js 
+        run: npx cypress run --browser chrome --spec ./cypress/integration/talmud-search-tests.js 
     
       - name: Firefox browser tests
-        run: npx cypress run --browser firefox --spec ./cypress/integration/bible-search-tests.js
+        run: npx cypress run --browser firefox --spec ./cypress/integration/talmud-search-tests.js
