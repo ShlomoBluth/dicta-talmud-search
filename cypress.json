@@ -2,5 +2,9 @@
     "projectId": "ehwnno",
     "screenshotOnRunFailure": false,
     "defaultCommandTimeout": 10000,
-    "baseUrl":"https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/"
+    "baseUrl":"https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/",
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    }
 }
