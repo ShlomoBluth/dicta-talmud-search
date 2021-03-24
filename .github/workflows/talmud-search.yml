@@ -28,11 +28,11 @@ jobs:
         $(npm bin)/cypress cache list
         $(npm bin)/cypress verify
     - name: Run chrome tests
-      run: npx cypress run --browser chrome --spec ./cypress/integration/bible-search-tests.js
+      run: npx cypress run --browser chrome --spec ./cypress/integration/talmud-search-tests.js
       continue-on-error: true
 
     - name: Run firefox tests
-      run: xvfb-run npx cypress run --browser firefox --spec ./cypress/integration/bible-search-tests.js
+      run: xvfb-run npx cypress run --browser firefox --spec ./cypress/integration/talmud-search-tests.js
       continue-on-error: true  
 
 
