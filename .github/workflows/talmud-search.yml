@@ -35,10 +35,11 @@ jobs:
       if: ${{ always() }}
 
 
-    - name: Copy test execution videos 
+    - name: Copy test execution videos and screenshots
       run: |
         mkdir public
         cp -r cypress/videos public/videos
+        cp -r cypress/screenshots public/screenshots
       if: ${{ always() }}
 
     - name: Merge test results into one
