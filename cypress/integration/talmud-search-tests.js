@@ -385,8 +385,6 @@ describe('talmud-search-tests',()=>{
     it('Different ways the bible refers to G-d',()=>{
         cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
         cy.existsInResult('האלהים')
-        // cy.searchRun({text:'ה\'',language:'Hebrew'})
-        // cy.existsInResult('הָאֱלֹהִים')
     })
 
     it('Search with numbers',()=>{
@@ -395,21 +393,23 @@ describe('talmud-search-tests',()=>{
         .should('be.visible')
     })
 
-    // const downloadsFolder = Cypress.config('downloadsFolder')
+    
 
-    // it('Html download',()=>{
-    //     cy.searchRun({text:'יום השישי',page:'Start',collection:'תלמוד',language:'Hebrew'})
-    //     cy.exec(' npx rimraf cypress/downloads/*')
-    //     cy.removeTaamim()
-    //     cy.get('[class*="dropdown-toggle"]').contains('הורדה').click()
-    //     cy.get('p').contains('קובץ CSV').parent().within(()=>{
-    //         cy.get('[type="radio"]').check({force:true})
-    //     })
-    //     cy.get('[type="submit"]').click().then(()=>{
-    //         const filename = path.join(downloadsFolder, 'searchResults.csv')
-    //         cy.readFile(filename,{timeout:150000}).should('have.length',19)
-    //     })
-    // })
+    const downloadsFolder = Cypress.config('downloadsFolder')
+
+    it('Html download',()=>{
+        cy.searchRun({text:'יום השישי',page:'Start',collection:'תלמוד',language:'Hebrew'})
+        cy.exec(' npx rimraf cypress/downloads/*')
+        cy.removeTaamim()
+        cy.get('[class*="dropdown-toggle"]').contains('הורדה').click()
+        cy.get('p').contains('קובץ CSV').parent().within(()=>{
+            cy.get('[type="radio"]').check({force:true})
+        })
+        cy.get('[type="submit"]').click().then(()=>{
+            const filename = path.join(downloadsFolder, 'searchResults.csv')
+            cy.readFile(filename,{timeout:150000}).should('have.length',19)
+        })
+    })
 
 
 
