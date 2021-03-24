@@ -146,6 +146,26 @@ describe('talmud-search-tests',()=>{
         })
     })
 
+    it('Removal of collection',()=>{
+        cy.searchRun({text:'דהכי אשכחן',collection:'תלמוד',language:'Hebrew'})
+        cy.showBooks()
+        //remove book שבת
+        cy.contains('סדר מועד').siblings('[class="inner-accordion-content"]').within(()=>{
+            cy.get('[class*="selectAll"]').within(()=>{
+                cy.get('[type="checkbox"]').uncheck({force: true})
+                cy.get('[type="checkbox"]').should('not.be.checked')
+            })
+        })
+        cy.selectedBooksMap().then(selectedBooks=>{
+            //Number of books is 9
+            expect(selectedBooks.size).eq(9)
+            cy.resultPagination({
+                tests:'books',
+                data:selectedBooks
+            })
+        })
+    })
+
     //////////////////////////////////////////////////////////////////////////////////////
 
     // it('Each result has at least one meaning of each search word',()=>{
@@ -252,32 +272,32 @@ describe('talmud-search-tests',()=>{
     it('Search with root words',()=>{
         cy.searchRun({text:'ברא',collection:'תלמוד',language:'Hebrew'})
         cy.clickNikud()
-        cy.existsInResult('ויברא')
+        cy.existsInResult('ויברא','ברא')
     })
 
     it('Search full spelling and also get partial spelling results',()=>{
         cy.searchRun({text:'דויד',collection:'תלמוד',language:'Hebrew'})
-        cy.existsInResult('דוד')
+        cy.existsInResult('דוד','דויד')
     })
 
     it('Search partial spelling and also get full spelling results',()=>{
         cy.searchRun({text:'תקו',collection:'תלמוד',language:'Hebrew'})
-        cy.existsInResult('תיקו')
+        cy.existsInResult('תיקו','תקו')
     })
 
     it('Search a word that ends with א and also get that word that ends with ה',()=>{
         cy.searchRun({text:'נפקה מינא',collection:'תלמוד',language:'Hebrew'})
-        cy.existsInResult('נפקא')
+        cy.existsInResult('נפקא','נפקה')
     })
 
     it('Search a word that ends with ה and also get that word that ends with א',()=>{
         cy.searchRun({text:'נפקה מינא',collection:'תלמוד',language:'Hebrew'})
-        cy.existsInResult('מינה')
+        cy.existsInResult('מינה','מינא')
     })
 
     it('Search a word that ends with ן and also get that word that ends with ם',()=>{
         cy.searchRun({text:'חיטים',collection:'תנ"ך',language:'Hebrew'})
-        cy.existsInResult('חִטִּין') 
+        cy.existsInResult('חטין','חיטים') 
     })
 
     //clarify
@@ -288,7 +308,7 @@ describe('talmud-search-tests',()=>{
 
     it('Search a word and also get that word with addition',()=>{
         cy.searchRun({text:'מאן דאמר',collection:'תלמוד',language:'Hebrew'})
-        cy.existsInResult('כמאן')
+        cy.existsInResult('כמאן','מאן')
     })
 
     
