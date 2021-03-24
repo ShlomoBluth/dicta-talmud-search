@@ -29,11 +29,11 @@ jobs:
         $(npm bin)/cypress verify
     - name: Run chrome tests
       run: npx cypress run --browser chrome --spec ./cypress/integration/talmud-search-tests.js
-      if: succeeded() || failed()
+      if: ${{ always() }}
 
     - name: Run firefox tests
       run: xvfb-run npx cypress run --browser firefox --spec ./cypress/integration/talmud-search-tests.js
-      if: succeeded() || failed()
+      if: ${{ always() }}
 
 
     - name: Copy test execution videos 
