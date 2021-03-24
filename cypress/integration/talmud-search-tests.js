@@ -441,7 +441,7 @@ describe('talmud-search-tests',()=>{
         cy.get('[class="check-text"]').contains('10').siblings().within(()=>{
             cy.get('[type="radio"]').check({force: true})
         })
-        cy.get('[class="result-li"]').should('have.length',10)
+        cy.get('[class="result-li"]').should('have.length',5)
     })
 
     it('50 results per page',()=>{
