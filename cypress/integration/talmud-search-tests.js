@@ -149,8 +149,9 @@ describe('talmud-search-tests',()=>{
     it('Removal of collection',()=>{
         cy.searchRun({text:'דהכי אשכחן',collection:'תלמוד',language:'Hebrew'})
         cy.showBooks()
-        //remove book שבת
-        cy.contains('סדר מועד').siblings('[class="inner-accordion-content"]').within(()=>{
+        //remove collection סדר מועד
+        cy.get('span').contains('סדר מועד').parent('a').siblings('[class="inner-accordion-content"]')
+        .within(()=>{
             cy.get('[class*="selectAll"]').within(()=>{
                 cy.get('[type="checkbox"]').uncheck({force: true})
                 cy.get('[type="checkbox"]').should('not.be.checked')
@@ -395,29 +396,25 @@ describe('talmud-search-tests',()=>{
 
     it('No nikud',()=>{
         cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
-        cy.get('[class="d-tooltip"]').contains('ללא ניקוד').parent().click()
-        cy.get('[class="d-tooltip"]').contains('ללא ניקוד').parent()
-        .should('have.attr','class','btn top-filter-common-btn text-select-btn has-tooltip active')
+        cy.theFormOfTheText('ללא ניקוד')
         cy.get('[class="result-li"]').first().should('contain','מאימתי קורין')
     })
 
     it('With nikud',()=>{
         cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
-        cy.get('[class="d-tooltip"]').contains('עם ניקוד').parent().click()
-        cy.get('[class="d-tooltip"]').contains('עם ניקוד').parent()
-        .should('have.attr','class','btn top-filter-common-btn text-select-btn has-tooltip active')
+        cy.theFormOfTheText('עם ניקוד')
         cy.get('[class="result-li"]').first().should('contain','מֵאֵימָתַי קוֹרִין')
     })
 
     it('Increasing the font',()=>{
         let fontSize
         cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
-        cy.get('[class="reset-line-height"]').then(text=>{
-            fontSize=parseInt(text.css('font-size'))
+        cy.fontSize().then(size=>{
+            fontSize=size
         })
         cy.get('[class*=fa-search-plus]').click()
-        cy.get('[class="reset-line-height"]').then(text=>{
-            cy.wrap(parseInt(text.css('font-size'))).should('be.gt',fontSize)
+        cy.fontSize().then(size=>{
+            cy.wrap(size).should('be.gt',fontSize)
         })
         cy.get('[class*=fa-search-minus]').click()
     })
@@ -425,40 +422,31 @@ describe('talmud-search-tests',()=>{
     it('Font reduction',()=>{
         let fontSize
         cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
-        cy.get('[class="reset-line-height"]').then(text=>{
-            fontSize=parseInt(text.css('font-size'))
+        cy.fontSize().then(size=>{
+            fontSize=size
         })
         cy.get('[class*=fa-search-minus]').click()
-        cy.get('[class="reset-line-height"]').then(text=>{
-            cy.wrap(parseInt(text.css('font-size'))).should('be.lt',fontSize)
+        cy.fontSize().then(size=>{
+            cy.wrap(size).should('be.lt',fontSize)
         })
         cy.get('[class*=fa-search-plus]').click()
     })
 
     it('10 results per page',()=>{
         cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
-        cy.get('[class*="page-toggle"]').click()
-        cy.get('[class="check-text"]').contains('10').siblings().within(()=>{
-            cy.get('[type="radio"]').check({force: true})
-        })
-        cy.get('[class="result-li"]').should('have.length',5)
+        cy.numberOfResultInPage('10')
+        cy.get('[class="result-li"]').should('have.length',10)
     })
 
     it('50 results per page',()=>{
         cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
-        cy.get('[class*="page-toggle"]').click()
-        cy.get('[class="check-text"]').contains('50').siblings().within(()=>{
-            cy.get('[type="radio"]').check({force: true})
-        })
+        cy.numberOfResultInPage('50')
         cy.get('[class="result-li"]').should('have.length',50)
     })
 
     it('100 results per page',()=>{
         cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
-        cy.get('[class*="page-toggle"]').click()
-        cy.get('[class="check-text"]').contains('100').siblings().within(()=>{
-            cy.get('[type="radio"]').check({force: true})
-        })
+        cy.numberOfResultInPage('100')
         cy.get('[class="result-li"]').should('have.length',100)
     })
 
