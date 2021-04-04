@@ -1,5 +1,7 @@
 ///<reference types="cypress"/>
 
+const path = require('path')
+
 
 describe('talmud-search-tests',()=>{
 
@@ -452,10 +454,45 @@ describe('talmud-search-tests',()=>{
 
 
 
-    // const downloadsFolder = Cypress.config('downloadsFolder')
+    
+    let downloadsFolder = Cypress.config('downloadsFolder')
 
-    // it('Html download',()=>{
-    //     cy.searchRun({text:'יום השישי',page:'Start',collection:'תלמוד',language:'Hebrew'})
+    it('HTML download',()=>{
+        cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
+        cy.exec(' npx rimraf cypress/downloads/*')
+        //cy.removeTaamim()
+        cy.get('[class*="dropdown-toggle"]').contains('הורדה').click()
+        cy.get('p').contains('קובץ HTML').parent().within(()=>{
+            cy.get('[type="radio"]').check({force:true})
+        })
+        cy.get('[type="submit"]').click().then(()=>{
+            const filename = path.join(downloadsFolder, 'searchResults.html')
+            cy.readFile(filename,{timeout:150000}).then(text=>{
+                let count=(text.match(/בבלי ומשנה/g)).length
+                cy.wrap(count).should('eq',46)
+            })
+        })
+    })
+
+    // it('TXT download',()=>{
+    //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
+    //     cy.exec(' npx rimraf cypress/downloads/*')
+    //     cy.removeTaamim()
+    //     cy.get('[class*="dropdown-toggle"]').contains('הורדה').click()
+    //     cy.get('p').contains('קובץ TXT').parent().within(()=>{
+    //         cy.get('[type="radio"]').check({force:true})
+    //     })
+    //     cy.get('[type="submit"]').click().then(()=>{
+    //         const filename = path.join(downloadsFolder, 'searchResults.txt')
+    //         cy.readFile(filename,{timeout:150000}).then(text=>{
+    //             let count=(text.match(/תלמוד\//g)).length
+    //             cy.wrap(count).should('eq',12)
+    //         })
+    //     })
+    // })
+
+    // it('CSV download',()=>{
+    //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
     //     cy.exec(' npx rimraf cypress/downloads/*')
     //     cy.removeTaamim()
     //     cy.get('[class*="dropdown-toggle"]').contains('הורדה').click()
@@ -464,7 +501,33 @@ describe('talmud-search-tests',()=>{
     //     })
     //     cy.get('[type="submit"]').click().then(()=>{
     //         const filename = path.join(downloadsFolder, 'searchResults.csv')
-    //         cy.readFile(filename,{timeout:150000}).should('have.length',19)
+    //         cy.readFile(filename,{timeout:150000}).then(text=>{
+    //             let count=(text.match(/תלמוד\//g)).length
+    //             cy.wrap(count).should('eq',12)
+    //         })
+    //     })
+    // })
+
+    //, { browser: '!firefox' }
+    // it('Word download',()=>{
+    //     // if(Cypress.isBrowser('firefox')){
+    //     //     downloadsFolder=path.resolve(__dirname,'cypress/downloads')
+    //     // }
+    //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
+    //     cy.exec(' npx rimraf cypress/downloads/*')
+    //     cy.removeTaamim()
+    //     cy.get('[class*="dropdown-toggle"]').contains('הורדה').click()
+    //     cy.get('p').contains('קובץ Word').parent().within(()=>{
+    //         cy.get('[type="radio"]').check({force:true})
+    //     })
+    //     cy.wait(30000)
+    //     cy.get('[type="submit"]').click().then(()=>{
+    //         cy.exec('npm run searchResults-convert', {failOnNonZeroExit: false})
+    //         const filename = path.join(downloadsFolder, 'searchResults.html')
+    //         cy.readFile(filename,{timeout:60000}).then(text=>{
+    //         let count=(text.match(/תלמוד\//g)).length
+    //         cy.wrap(count).should('eq',12)
+    //     })
     //     })
     // })
 
