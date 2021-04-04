@@ -468,7 +468,7 @@ describe('talmud-search-tests',()=>{
         cy.get('[type="submit"]').click().then(()=>{
             const filename = path.join(downloadsFolder, 'searchResults.html')
             cy.readFile(filename,{timeout:150000}).then(text=>{
-                let count=(text.match(/בבלי ומשנה/g)).length
+                let count=(text.match(/בבלי/g)).length
                 cy.wrap(count).should('eq',46)
             })
         })
