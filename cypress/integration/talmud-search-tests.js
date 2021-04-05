@@ -152,7 +152,7 @@ describe('talmud-search-tests',()=>{
         cy.searchRun({text:'דהכי אשכחן',collection:'תלמוד',language:'Hebrew'})
         cy.showBooks()
         //remove collection סדר מועד
-        cy.get('span').contains('סדר מועד').parent('a').siblings('[class="inner-accordion-content"]')
+        cy.get('span').contains('סדר מועד').parent('a').siblings('[class*="inner-accordion-content"]')
         .within(()=>{
             cy.get('[class*="selectAll"]').within(()=>{
                 cy.get('[type="checkbox"]').uncheck({force: true})
