@@ -27,12 +27,13 @@ jobs:
         $(npm bin)/cypress cache path
         $(npm bin)/cypress cache list
         $(npm bin)/cypress verify
+
     - name: Run chrome tests
       run: npx cypress run --browser chrome --spec ./cypress/integration/talmud-search-tests.js
 
-    #- name: Run firefox tests
-      #run: xvfb-run npx cypress run --browser firefox --spec ./cypress/integration/talmud-search-tests.js
-      #if: ${{ always() }}
+    - name: Run firefox tests
+      run: xvfb-run npx cypress run --browser firefox --spec ./cypress/integration/talmud-search-tests.js
+      if: ${{ always() }}
 
 
     - name: Copy test execution videos
