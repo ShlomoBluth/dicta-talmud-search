@@ -1,0 +1,110 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2021-04-04T10:45:28.759Z",
+    "end": "2021-04-04T10:48:09.412Z",
+    "duration": 160653,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "15769b09-9808-44ce-a8c8-0d2310981969",
+      "title": "",
+      "fullFile": "cypress\\integration\\talmud-search-tests.js",
+      "file": "cypress\\integration\\talmud-search-tests.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9df901b7-65d8-474d-8599-b267bebb8748",
+          "title": "talmud-search-tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "HTML download",
+              "fullTitle": "talmud-search-tests HTML download",
+              "timedOut": null,
+              "duration": 159805,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "\"videos/talmud-search-tests.js.mp4\"",
+              "code": "cy.searchRun({\n  text: 'יום השישי',\n  collection: 'תלמוד',\n  language: 'Hebrew'\n});\ncy.exec(' npx rimraf cypress/downloads/*'); //cy.removeTaamim()\ncy.get('[class*=\"dropdown-toggle\"]').contains('הורדה').click();\ncy.get('p').contains('קובץ HTML').parent().within(function () {\n  cy.get('[type=\"radio\"]').check({\n    force: true\n  });\n});\ncy.get('[type=\"submit\"]').click().then(function () {\n  var filename = path.join(downloadsFolder, 'searchResults.html');\n  cy.readFile(filename, {\n    timeout: 150000\n  }).then(function (text) {\n    var count = text.match(/בבלי ומשנה/g).length;\n    cy.wrap(count).should('eq', 46);\n  });\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 150000ms: `cy.readFile(\"C:\\Users\\Administrator\\Desktop\\Cypress\\dicta-talmud-search\\cypress\\downloads/searchResults.html\")` failed because the file does not exist at the following path:\n\n`C:\\Users\\Administrator\\Desktop\\Cypress\\dicta-talmud-search\\cypress\\downloads\\searchResults.html`\n\nhttps://on.cypress.io/readfile",
+                "estack": "AssertionError: Timed out retrying after 150000ms: `cy.readFile(\"C:\\Users\\Administrator\\Desktop\\Cypress\\dicta-talmud-search\\cypress\\downloads/searchResults.html\")` failed because the file does not exist at the following path:\n\n`C:\\Users\\Administrator\\Desktop\\Cypress\\dicta-talmud-search\\cypress\\downloads\\searchResults.html`\n\nhttps://on.cypress.io/readfile\n    ./cypress/integration/talmud-search-tests.js/</</<@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/tests?p=cypress\\integration\\talmud-search-tests.js:1010:10\n    getRet@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:156435:20\n    tryCatcher@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:10765:23\n    ../../node_modules/bluebird/js/release/method.js/module.exports/Promise.try@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:8039:29\n    thenFn@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:156453:20\n    then@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:156892:21\n    wrapByType/<@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:171546:21\n    runCommand/<@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:170970:15\n    tryCatcher@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:10765:23\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseFromHandler@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:8700:31\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromise@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:8757:18\n    ../../node_modules/bluebird/js/release/promise.js/</module.exports/Promise.prototype._settlePromiseCtx@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:8794:10\n    _drainQueueStep@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:5476:12\n    _drainQueue@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:5465:24\n    ../../node_modules/bluebird/js/release/async.js/</Async.prototype._drainQueues@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:5481:16\n    Async/this.drainQueues@https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/__cypress/runner/cypress_runner.js:5351:14\n",
+                "diff": null
+              },
+              "uuid": "0e5a1495-a755-4c63-b7ec-53abd86c3dcf",
+              "parentUUID": "9df901b7-65d8-474d-8599-b267bebb8748",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "0e5a1495-a755-4c63-b7ec-53abd86c3dcf"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 159805,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/json",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}

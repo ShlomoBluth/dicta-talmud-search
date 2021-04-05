@@ -9,7 +9,8 @@
     "runChrome": "cypress run --browser chrome  --record --key 3a649b87-ff24-4727-a601-2f2ade287aa3",
     "runFirefox": "cypress run --browser firefox  --record --key 3a649b87-ff24-4727-a601-2f2ade287aa3",
     "report:merge": "mochawesome-merge cypress/results/json/*.json > index.json",
-    "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
+    "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html",
+    "searchResults-convert": "mammoth cypress/downloads/searchResults.docx cypress/downloads/searchResults.html"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,8 @@
     "mocha": "^8.3.2",
     "mochawesome": "^6.2.2",
     "mochawesome-merge": "^4.2.0"
+  },
+  "dependencies": {
+    "mammoth": "^1.4.16"
   }
 }
