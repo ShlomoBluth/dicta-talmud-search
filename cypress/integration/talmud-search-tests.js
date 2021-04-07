@@ -549,12 +549,14 @@ sizes.forEach((size) => {
     //         cy.removeDownloadsFiles()
     //         cy.downloadFile({type:'Word'}).then(()=>{
     //             //Convert file to html
-    //             cy.exec('npm run searchResults-convert', {failOnNonZeroExit: false})
-    //             cy.validateFile({
-    //                 type:'html',
-    //                 resNum:46,
-    //                 collection:'תלמוד'
-    //             })
+    //             cy.readFile('cypress/downloads/searchResults.docx').then(()=>{
+    //                  cy.exec('npm run searchResults-convert', {failOnNonZeroExit: false})
+    //                  cy.validateFile({
+    //                      type:'html',
+    //                      resNum:46,
+    //                      collection:'תלמוד'
+    //                  })
+    //              })
     //         })
     //     })
     
