@@ -1,7 +1,7 @@
 
 
 Cypress.Commands.add('clickNikud',()=>{
-  cy.get('[class*="text-select f-narkis"] > :nth-child(2)').click()
+  cy.get('[class*="text-select f-narkis"] > :nth-child(2)').click({force: true})
 })
 
 Cypress.Commands.add('resultsTests',(text)=>{
@@ -57,7 +57,7 @@ Cypress.Commands.add('setLanguageMode',(language)=>{
       }
       if(classAttr!=languageMode)
       {
-        cy.get('a').contains(/^English$|^עברית$/g).click();
+        cy.get('a').contains(/^English$|^עברית$/g).click({force: true});
       }
       if(languageMode=='he'){
         cy.get('a').contains(/^English$/).should('exist')
