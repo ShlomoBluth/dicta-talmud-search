@@ -35,3 +35,8 @@ Cypress.on("test:after:run", (test, runnable) => {
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
 });
+
+Cypress.on('window:before:load', win => {
+    // disable service workers
+    delete win.navigator.__proto__.serviceWorker;
+});
