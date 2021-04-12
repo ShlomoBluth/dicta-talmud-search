@@ -302,34 +302,36 @@ sizes.forEach((size) => {
     
         it('Search with root words',()=>{
             cy.searchRun({text:'ברא',collection:'תלמוד',language:'Hebrew'})
-            cy.clickNikud()
-            cy.existsInResult('ויברא','ברא')
+            cy.existsInResult('ויברא')
         })
     
         it('Search full spelling and also get partial spelling results',()=>{
             cy.searchRun({text:'דויד',collection:'תלמוד',language:'Hebrew'})
-            cy.existsInResult('דוד','דויד')
+            cy.existsInResult('דוד')
         })
     
         it('Search partial spelling and also get full spelling results',()=>{
             cy.searchRun({text:'תקו',collection:'תלמוד',language:'Hebrew'})
-            cy.existsInResult('תיקו','תקו')
+            cy.theFormOfTheText('ללא ניקוד')
+            cy.existsInResult('תיקו')
         })
     
         it('Search a word that ends with א and also get that word that ends with ה',()=>{
             cy.searchRun({text:'נפקה מינא',collection:'תלמוד',language:'Hebrew'})
-            cy.existsInResult('נפקא','נפקה')
+            cy.theFormOfTheText('ללא ניקוד')
+            cy.existsInResult('נפקא')
         })
     
         it('Search a word that ends with ה and also get that word that ends with א',()=>{
             cy.searchRun({text:'נפקה מינא',collection:'תלמוד',language:'Hebrew'})
-            cy.existsInResult('מינה','מינא')
+            cy.theFormOfTheText('ללא ניקוד')
+            cy.existsInResult('מינה')
         })
     
         it('Search a word that ends with ן and also get that word that ends with ם',()=>{
             cy.searchRun({text:'חִטִּים',collection:'תנ"ך',language:'Hebrew'})
             //cy.theFormOfTheText('ללא ניקוד')
-            cy.existsInResult('חִטִּין','חִטִּים') 
+            cy.existsInResult('חִטִּין') 
         })
     
         // //clarify
@@ -341,7 +343,8 @@ sizes.forEach((size) => {
     
         it('Search a word and also get that word with addition',()=>{
             cy.searchRun({text:'מאן דאמר',collection:'תלמוד',language:'Hebrew'})
-            cy.existsInResult('כמאן','מאן')
+            cy.theFormOfTheText('ללא ניקוד')
+            cy.existsInResult('כמאן')
         })
     
         
@@ -417,7 +420,7 @@ sizes.forEach((size) => {
     
         it('Different ways the bible refers to G-d',()=>{
             cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
-            cy.existsInResult('האלהים')
+            cy.existsInResult('אֱלֹהִים')
         })
     
         it('Search with numbers',()=>{
@@ -574,6 +577,6 @@ sizes.forEach((size) => {
         //         cy.fileDoesNotContain({type:'html',text:'אֱלֹהִים'})
         //     })
         // })
-     })
+    })
 
 })
