@@ -4,7 +4,7 @@
 
 
 
-let sizes = [[1000, 660]]//'iphone-x',
+let sizes = ['iphone-x',[1000, 660]]
 
 // before(()=>{
 //     cy.visit('/')
