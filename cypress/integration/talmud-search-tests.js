@@ -113,8 +113,8 @@ sizes.forEach((size) => {
             cy.get('.f > span > :nth-child(2)').then($numberOfResults=>{
                 expect(parseInt($numberOfResults.text())).to.eq(198)
             })
-            cy.get('input[class*="search-form-control"]').clear({force:true})
-            .type('"שלום בית"',{force:true})
+            cy.searchRun({text:'"שלום בית"',collection:'תנ"ך',language:'Hebrew'})
+            cy.theFormOfTheText('עם ניקוד')
             cy.get('[class*="fa-search text"]').click({force:true})
             cy.get('[class*="loader"]').should('not.exist')
             //Number of results
@@ -162,7 +162,7 @@ sizes.forEach((size) => {
             cy.searchRun({text:'דהכי אשכחן',collection:'תלמוד',language:'Hebrew'})
             cy.showBooks()
             //remove book שבת
-            cy.get('[class="slide-li"]').contains(' מסכת שבת').within(()=>{
+            cy.get('[class="slide-li"]').contains('מסכת שבת').within(()=>{
                 cy.get('[type="checkbox"]').uncheck({force: true})
                 cy.get('[type="checkbox"]').should('not.be.checked')
             })
