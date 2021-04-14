@@ -76,7 +76,7 @@ sizes.forEach((size) => {
             cy.get('.f > span > :nth-child(2)').should('contain',17)
             //Removal of למשה
             cy.get('li').contains('למשה').within(()=>{
-                cy.get('[type="checkbox"]').uncheck({force: true})
+                cy.get('[type="checkbox"]',{timeout:60000}).uncheck({force: true})
             })
             cy.get('[class*="loader"]').should('not.exist')
             //The number in the top has 16
@@ -95,7 +95,7 @@ sizes.forEach((size) => {
             })
             //Check of למשה
             cy.get('li').contains('למשה').within(()=>{
-                cy.get('[type="checkbox"]').check({force: true})
+                cy.get('[type="checkbox"]',{timeout:60000}).check({force: true})
             })
         })
             
