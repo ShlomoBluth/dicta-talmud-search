@@ -65,9 +65,9 @@ sizes.forEach((size) => {
             //The number in the top has 17
             cy.get('.f > span > :nth-child(2)').should('contain',17)
             //Removal of למשה
-            cy.get('span[class="f-narkis"]').contains('למשה').parent()
+            cy.get('span[class="f-narkis"]',{timeout:60000}).contains('למשה').parent()
             .siblings('[class*="chek-box-holder"]').within(()=>{
-                cy.get('[type="checkbox"]',{timeout:60000}).uncheck({force: true})
+                cy.get('[type="checkbox"]').uncheck({force: true})
             })
             cy.get('[class*="loader"]').should('not.exist')
             //The number in the top has 16
@@ -85,9 +85,9 @@ sizes.forEach((size) => {
                 })
             })
             //Check of למשה
-            cy.get('span[class="f-narkis"]').contains('למשה').parent()
+            cy.get('span[class="f-narkis"]',{timeout:70000}).contains('למשה').parent()
             .siblings('[class*="chek-box-holder"]').within(()=>{
-                cy.get('[type="checkbox"]',{timeout:70000}).check({force: true})
+                cy.get('[type="checkbox"]').check({force: true})
             })
         })
             
