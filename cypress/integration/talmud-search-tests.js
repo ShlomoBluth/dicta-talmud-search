@@ -61,9 +61,9 @@ sizes.forEach((size) => {
     
         it('Removal of word form',()=>{
             cy.searchRun({text:'משה קבל תורה',collection:'תלמוד',language:'Hebrew'})
-            cy.showAllWordForms()
             //The number in the top has 17
             cy.get('.f > span > :nth-child(2)').should('contain',17)
+            cy.showAllWordForms()
             //Removal of למשה
             cy.get('span[class="f-narkis"]',{timeout:60000}).contains('למשה').parent()
             .siblings('[class*="chek-box-holder"]').within(()=>{
@@ -415,7 +415,7 @@ sizes.forEach((size) => {
         })
     
         it('Search with numbers',()=>{
-            cy.searchRun({text:'4',collection:'תלמוד',language:'Hebrew'})
+            cy.searchRun({text:'14',collection:'תלמוד',language:'Hebrew'})
             cy.contains('אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',{timeout:60000})
             .should('be.visible')
         })
