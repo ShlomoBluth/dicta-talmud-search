@@ -35,6 +35,14 @@ jobs:
       #run: xvfb-run npx cypress run --browser firefox --spec ./cypress/integration/talmud-search-tests.js
       #if: ${{ always() }}
 
+    - name: Run chrome requests tests
+      run: npx cypress run --browser chrome --spec ./cypress/integration/requestsTest.js
+      if: ${{ always() }}
+
+    - name: Run firefox requests tests
+      run: npx cypress run --browser firefox --spec ./cypress/integration/requestsTest.js
+      if: ${{ always() }}
+
 
     - name: Copy test execution videos
       run: |
