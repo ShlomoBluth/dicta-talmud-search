@@ -5,13 +5,10 @@
 describe('RequestsTest',()=>{
 
     
-  before(() => {
+  beforeEach(() => {
     cy.visit('https://talmudsearch.dicta.org.il/')
   })
 
-  afterEach(() => {
-    cy.go(-2)
-  })
    
 
   it('Error message for textAnalysis response with a delay of 5 minutes when clicking the run button'+

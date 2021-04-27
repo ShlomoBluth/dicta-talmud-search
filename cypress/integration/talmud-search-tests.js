@@ -420,154 +420,154 @@ sizes.forEach((size) => {
             .should('be.visible')
         })
     
-        it('No nikud',()=>{
-            cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
-            cy.theFormOfTheText('ללא ניקוד')
-            cy.get('[class="result-li"]').first().should('contain','מאימתי קורין')
-        })
+        // it('No nikud',()=>{
+        //     cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
+        //     cy.theFormOfTheText('ללא ניקוד')
+        //     cy.get('[class="result-li"]').first().should('contain','מאימתי קורין')
+        // })
     
-        it('With nikud',()=>{
-            cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
-            cy.theFormOfTheText('עם ניקוד')
-            cy.get('[class="result-li"]').first().should('contain','מֵאֵימָתַי קוֹרִין')
-        })
+        // it('With nikud',()=>{
+        //     cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
+        //     cy.theFormOfTheText('עם ניקוד')
+        //     cy.get('[class="result-li"]').first().should('contain','מֵאֵימָתַי קוֹרִין')
+        // })
     
-        it('Increasing the font',()=>{
-            let fontSize
-            cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
-            cy.fontSize().then(size=>{
-                fontSize=size
-            })
-            cy.get('[class*=fa-search-plus]').click({force: true})
-            cy.fontSize().then(size=>{
-                cy.wrap(size).should('be.gt',fontSize)
-            })
-            cy.get('[class*=fa-search-minus]').click({force: true})
-        })
+        // it('Increasing the font',()=>{
+        //     let fontSize
+        //     cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
+        //     cy.fontSize().then(size=>{
+        //         fontSize=size
+        //     })
+        //     cy.get('[class*=fa-search-plus]').click({force: true})
+        //     cy.fontSize().then(size=>{
+        //         cy.wrap(size).should('be.gt',fontSize)
+        //     })
+        //     cy.get('[class*=fa-search-minus]').click({force: true})
+        // })
     
-        it('Font reduction',()=>{
-            let fontSize
-            cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
-            cy.fontSize().then(size=>{
-                fontSize=size
-            })
-            cy.get('[class*=fa-search-minus]').click({force: true})
-            cy.fontSize().then(size=>{
-                cy.wrap(size).should('be.lt',fontSize)
-            })
-            cy.get('[class*=fa-search-plus]').click({force: true})
-        })
+        // it('Font reduction',()=>{
+        //     let fontSize
+        //     cy.searchRun({text:'מאימתי קורין',collection:'תלמוד',language:'Hebrew'})
+        //     cy.fontSize().then(size=>{
+        //         fontSize=size
+        //     })
+        //     cy.get('[class*=fa-search-minus]').click({force: true})
+        //     cy.fontSize().then(size=>{
+        //         cy.wrap(size).should('be.lt',fontSize)
+        //     })
+        //     cy.get('[class*=fa-search-plus]').click({force: true})
+        // })
     
-        it('10 results per page',()=>{
-            cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
-            cy.numberOfResultInPage('10')
-            cy.get('[class="result-li"]').should('have.length',10)
-        })
+        // it('10 results per page',()=>{
+        //     cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
+        //     cy.numberOfResultInPage('10')
+        //     cy.get('[class="result-li"]').should('have.length',10)
+        // })
     
-        it('50 results per page',()=>{
-            cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
-            cy.numberOfResultInPage('50')
-            cy.get('[class="result-li"]').should('have.length',50)
-        })
+        // it('50 results per page',()=>{
+        //     cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
+        //     cy.numberOfResultInPage('50')
+        //     cy.get('[class="result-li"]').should('have.length',50)
+        // })
     
-        it('100 results per page',()=>{
-            cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
-            cy.numberOfResultInPage('100')
-            cy.get('[class="result-li"]').should('have.length',100)
-        })
+        // it('100 results per page',()=>{
+        //     cy.searchRun({text:'נפקא מינה',collection:'תלמוד',language:'Hebrew'})
+        //     cy.numberOfResultInPage('100')
+        //     cy.get('[class="result-li"]').should('have.length',100)
+        // })
     
     
     
         
         
     
-        it('HTML download',()=>{
-            cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
-            cy.removeDownloadsFiles()
-            cy.downloadFile({type:'HTML'}).then(()=>{
-                cy.validateFile({
-                    type:'html',
-                    resNum:46,
-                    collection:'תלמוד'
-                })
-            })
-        })
-    
-        // it('HTML download do not include the שמות קדושים', { browser: '!firefox' },()=>{
-        //     cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
+        // it('HTML download',()=>{
+        //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
         //     cy.removeDownloadsFiles()
-        //     cy.downloadFile({type:'HTML',shemotKdoshim:true}).then(()=>{
-        //         cy.fileDoesNotContain({type:'html',text:'אֱלֹהִים'})
+        //     cy.downloadFile({type:'HTML'}).then(()=>{
+        //         cy.validateFile({
+        //             type:'html',
+        //             resNum:46,
+        //             collection:'תלמוד'
+        //         })
         //     })
         // })
     
-
-        
-        it('TXT download',()=>{
-            cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
-            cy.removeDownloadsFiles()
-            cy.downloadFile({type:'TXT'}).then(()=>{
-                cy.validateFile({
-                    type:'txt',
-                    resNum:46,
-                    collection:'תלמוד'
-                })
-            })
-        })
-    
-        // // it('TXT download do not include the שמות קדושים', { browser: '!firefox' },()=>{
+        // // it('HTML download do not include the שמות קדושים', { browser: '!firefox' },()=>{
         // //     cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
         // //     cy.removeDownloadsFiles()
-        // //     cy.downloadFile({type:'TXT',shemotKdoshim:true}).then(()=>{
-        // //         cy.fileDoesNotContain({type:'txt',text:'אֱלֹהִים'})
+        // //     cy.downloadFile({type:'HTML',shemotKdoshim:true}).then(()=>{
+        // //         cy.fileDoesNotContain({type:'html',text:'אֱלֹהִים'})
         // //     })
         // // })
     
-        it('CSV download',()=>{
-            cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
-            cy.removeDownloadsFiles()
-            cy.downloadFile({type:'CSV'}).then(()=>{
-                cy.validateFile({
-                    type:'csv',
-                    resNum:46,
-                    collection:'תלמוד'
-                })
-            })
-        })
-    
-        // it('CSV download do not include the שמות קדושים', { browser: '!firefox' },()=>{
-        //     cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
+
+        
+        // it('TXT download',()=>{
+        //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
         //     cy.removeDownloadsFiles()
-        //     cy.downloadFile({type:'CSV',shemotKdoshim:true}).then(()=>{
-        //         cy.fileDoesNotContain({type:'csv',text:'אֱלֹהִים'})
+        //     cy.downloadFile({type:'TXT'}).then(()=>{
+        //         cy.validateFile({
+        //             type:'txt',
+        //             resNum:46,
+        //             collection:'תלמוד'
+        //         })
         //     })
         // })
     
-        it('Word download',()=>{
-            cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
-            cy.removeDownloadsFiles()
-            cy.downloadFile({type:'Word'}).then(()=>{
-                //Convert file to html
-                cy.readFile('cypress/downloads/searchResults.docx').then(()=>{
-                     cy.exec('npm run searchResults-convert', {failOnNonZeroExit: false})
-                     cy.validateFile({
-                         type:'html',
-                         resNum:46,
-                         collection:'תלמוד'
-                     })
-                 })
-            })
-        })
+        // // // it('TXT download do not include the שמות קדושים', { browser: '!firefox' },()=>{
+        // // //     cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
+        // // //     cy.removeDownloadsFiles()
+        // // //     cy.downloadFile({type:'TXT',shemotKdoshim:true}).then(()=>{
+        // // //         cy.fileDoesNotContain({type:'txt',text:'אֱלֹהִים'})
+        // // //     })
+        // // // })
     
-        // it('Word download do not include the שמות קדושים', { browser: '!firefox' },()=>{
-        //     cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
+        // it('CSV download',()=>{
+        //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
         //     cy.removeDownloadsFiles()
-        //     cy.downloadFile({type:'Word',shemotKdoshim:true}).then(()=>{
+        //     cy.downloadFile({type:'CSV'}).then(()=>{
+        //         cy.validateFile({
+        //             type:'csv',
+        //             resNum:46,
+        //             collection:'תלמוד'
+        //         })
+        //     })
+        // })
+    
+        // // it('CSV download do not include the שמות קדושים', { browser: '!firefox' },()=>{
+        // //     cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
+        // //     cy.removeDownloadsFiles()
+        // //     cy.downloadFile({type:'CSV',shemotKdoshim:true}).then(()=>{
+        // //         cy.fileDoesNotContain({type:'csv',text:'אֱלֹהִים'})
+        // //     })
+        // // })
+    
+        // it('Word download',()=>{
+        //     cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
+        //     cy.removeDownloadsFiles()
+        //     cy.downloadFile({type:'Word'}).then(()=>{
         //         //Convert file to html
-        //         cy.exec('npm run searchResults-convert', {failOnNonZeroExit: false})
-        //         cy.fileDoesNotContain({type:'html',text:'אֱלֹהִים'})
+        //         cy.readFile('cypress/downloads/searchResults.docx').then(()=>{
+        //              cy.exec('npm run searchResults-convert', {failOnNonZeroExit: false})
+        //              cy.validateFile({
+        //                  type:'html',
+        //                  resNum:46,
+        //                  collection:'תלמוד'
+        //              })
+        //          })
         //     })
         // })
+    
+        // // it('Word download do not include the שמות קדושים', { browser: '!firefox' },()=>{
+        // //     cy.searchRun({text:'א-להים',collection:'תלמוד',language:'Hebrew'})
+        // //     cy.removeDownloadsFiles()
+        // //     cy.downloadFile({type:'Word',shemotKdoshim:true}).then(()=>{
+        // //         //Convert file to html
+        // //         cy.exec('npm run searchResults-convert', {failOnNonZeroExit: false})
+        // //         cy.fileDoesNotContain({type:'html',text:'אֱלֹהִים'})
+        // //     })
+        // // })
     })
 
 })
