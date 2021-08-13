@@ -3,7 +3,7 @@
 
 
 
-let sizes = ['iphone-x']//,[1000, 660]
+let sizes = ['iphone-x',[1000, 660]]
 
 
 
