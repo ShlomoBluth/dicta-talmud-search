@@ -1,7 +1,14 @@
 {
     "projectId": "ehwnno",
     "baseUrl":"https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/",
+    "failOnStatusCode": false,
+    "reporterOptions": {
+        "configFile": "dicta-shared/reporter-config.json"
+    },
     "env":{
-        "configFile":"config"
+        "configFile":"config",
+        "TOOL_TESTS":true,
+        "REQUESTS_TESTS":true,
+        "RECORD_KEY":"3a649b87-ff24-4727-a601-2f2ade287aa3"
     }
 }

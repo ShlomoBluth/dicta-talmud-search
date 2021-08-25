@@ -27,7 +27,7 @@ Cypress.Commands.add('talmudSearchRequest',({url,language,status=200,message='',
   if(message.length>0){
     cy.contains(message,{timeout:1000*delaySeconds}).should('not.exist')
   }  
-  cy.searchRun({text:'משה קבל תורה מסיני',language:language,delay:true})
+  cy.searchRunforReq({text:'משה קבל תורה מסיני',language:language,delay:true})
   if(delaySeconds>0){
     cy.get('body').then(($body) => {
       cy.get('[class*="loader"]',{timeout:1000*delaySeconds}).should('not.exist')
