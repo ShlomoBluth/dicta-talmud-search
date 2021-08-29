@@ -91,7 +91,7 @@ sizes.forEach((size) => {
                 expect(parseInt($numberOfResults.text())).to.eq(198)
             })
             cy.visit('/')
-            cy.searchRun({text:'"שלום בית"',collection:'תנ"ך',language:'Hebrew'})
+            cy.searchRun({text:'"שלום בית"',collection:'תלמוד',language:'Hebrew'})
             
             //Number of results
             cy.get('.f > span > :nth-child(2)').then($numberOfResults=>{
@@ -305,7 +305,7 @@ sizes.forEach((size) => {
         })
     
         it('Search a word that ends with ן and also get that word that ends with ם',()=>{
-            cy.searchRun({text:'חִטִּים',collection:'תנ"ך',language:'Hebrew'})
+            cy.searchRun({text:'חִטִּים',collection:'תלמוד',language:'Hebrew'})
             //cy.theFormOfTheText('ללא ניקוד')
             cy.existsInResult('חִטִּין') 
         })
