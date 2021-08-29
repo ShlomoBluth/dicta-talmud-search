@@ -400,8 +400,17 @@ sizes.forEach((size) => {
         })
     
         it('Search with numbers',()=>{
-            cy.searchRun({text:'14',collection:'תלמוד',language:'Hebrew'})
-            cy.contains('אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר',{timeout:60000})
+            cy.setLanguageMode({
+                language:'Hebrew',
+                mobileSelector:'lang-switch'
+              })
+            cy.log("Run search for 4")
+            cy.intercept('**/wordforms').as('wordformsreq')
+            cy.get('input[id="search_box"]').clear().type('4')
+            cy.get('button[id="mobile_search_button"]').click({force:true})
+            cy.wait('@wordformsreq',{timeout:30000})
+            cy.get('[class*=spinner]').should('not.exist')        
+            cy.contains('אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר')
             .should('be.visible')
         })
     
