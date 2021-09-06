@@ -98,7 +98,7 @@ urls.forEach((urlValue,urlKey)=>{
                 cy.get('.f > span > :nth-child(2)').then($numberOfResults=>{
                     expect(parseInt($numberOfResults.text())).to.eq(198)
                 })
-                cy.visit('/')
+                cy.visitpage({url:urlValue})
                 cy.searchRun({text:'"שלום בית"',collection:'תלמוד',language:'Hebrew'})
                 
                 //Number of results
@@ -417,9 +417,11 @@ urls.forEach((urlValue,urlKey)=>{
                 cy.get('input[id="search_box"]').clear().type('4')
                 cy.get('button[id="mobile_search_button"]').click({force:true})
                 cy.wait('@wordformsreq',{timeout:30000})
-                cy.get('[class*=spinner]').should('not.exist')        
-                cy.contains('אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר')
-                .should('be.visible')
+                if(urlKey.includes('dev')){
+                    cy.get('[class*=spinner]').should('not.exist')        
+                    cy.contains('אופס יש לנו בעיה נסו שנית, או בקרו באתר מאוחר יותר')
+                    .should('be.visible')
+                }
             })
         
             it('No nikud',()=>{
