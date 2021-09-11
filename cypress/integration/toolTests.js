@@ -56,6 +56,7 @@ urls.forEach((urlValue,urlKey)=>{
                 cy.searchRun({text:'משה קבל תורה',collection:'תלמוד',language:'Hebrew'})
                 //The number in the top has 17
                 cy.get('.f > span > :nth-child(2)').should('contain',17)
+                cy.contains('277 הטיות נבחרו').should('exist')
                 cy.showAllWordForms()
                 //Removal of למשה
                 cy.get('span[class="f-narkis"]').contains('למשה').parent()
