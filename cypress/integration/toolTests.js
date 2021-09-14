@@ -101,6 +101,7 @@ urls.forEach((urlValue,urlKey)=>{
                 })
                 cy.visitpage({url:urlValue})
                 cy.searchRun({text:'"שלום בית"',collection:'תלמוד',language:'Hebrew'})
+                cy.contains('240 הטיות נבחרו').should('exist')
                 
                 //Number of results
                 cy.get('.f > span > :nth-child(2)').then($numberOfResults=>{
