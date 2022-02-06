@@ -1,11 +1,11 @@
 {
     "projectId": "ehwnno",
-    "baseUrl":"https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/",
+    "baseUrl":"https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app",
     "reporterOptions": {
         "configFile": "dicta-shared/reporter-config.json"
     },
     "env":{
-        "DEV_URL":"https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app/",
+        "DEV_URL":"https://use-dicta-components-2--tender-hamilton-5d028e.netlify.app",
         "LIVE_URL":"https://talmudsearch.dicta.org.il/",
         "configFile":"config",
         "TOOL_TESTS":true,
