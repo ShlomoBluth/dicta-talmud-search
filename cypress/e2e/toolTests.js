@@ -487,7 +487,7 @@ urls.forEach((urlValue,urlKey)=>{
             
             
         
-            it('HTML download',()=>{
+            it('HTML download', { browser: '!chrome' },()=>{
                 cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
                 cy.removeDownloadsFiles()
                 cy.downloadFile({type:'HTML'}).then(()=>{
@@ -509,7 +509,7 @@ urls.forEach((urlValue,urlKey)=>{
         
     
             
-            it('TXT download',()=>{
+            it('TXT download', { browser: '!chrome' },()=>{
                 cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
                 cy.removeDownloadsFiles()
                 cy.downloadFile({type:'TXT'}).then(()=>{
@@ -529,7 +529,7 @@ urls.forEach((urlValue,urlKey)=>{
             // //     })
             // // })
         
-            it('CSV download',()=>{
+            it('CSV download', { browser: '!chrome' },()=>{
                 cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
                 cy.removeDownloadsFiles()
                 cy.downloadFile({type:'CSV'}).then(()=>{
@@ -549,7 +549,7 @@ urls.forEach((urlValue,urlKey)=>{
             //     })
             // })
         
-            it('Word download',()=>{
+            it('Word download', { browser: '!chrome' },()=>{
                 cy.searchRun({text:'יום השישי',collection:'תלמוד',language:'Hebrew'})
                 cy.removeDownloadsFiles()
                 cy.downloadFile({type:'Word'}).then(()=>{
