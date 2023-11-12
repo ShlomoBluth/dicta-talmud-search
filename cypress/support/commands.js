@@ -7,7 +7,7 @@ Cypress.Commands.add('clickNikud',()=>{
 Cypress.Commands.add('resultsTests',(text)=>{
   cy.get('[class*="loader"]').should('not.exist')
   let nakdanResults=''
-  cy.get('[class="sentence-holder"]').within(()=>{
+  cy.get('[class="sentence-holder"]').first().within(()=>{
     cy.get('b').parent().then($restOfTheSentence=>{
       nakdanResults=$restOfTheSentence.text()
     })

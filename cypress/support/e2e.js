@@ -24,7 +24,7 @@ import '../../dicta-shared/index.js'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-Cypress.config('trashAssetsBeforeRuns', false)
+// Cypress.config('trashAssetsBeforeRuns', false)
 
 Cypress.on('uncaught:exception', (err, runnable) => {
     return false;

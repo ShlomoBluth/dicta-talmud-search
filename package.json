@@ -18,7 +18,7 @@
   "homepage": "https://github.com/ShlomoBluth/dicta-talmud-search#readme",
   "devDependencies": {
     "@testing-library/cypress": "^7.0.5",
-    "cypress": "^8.3.1",
+    "cypress": "^13.5.0",
     "cypress-multi-reporters": "^1.4.0",
     "mocha": "^8.3.2",
     "mochawesome": "^6.2.2",
