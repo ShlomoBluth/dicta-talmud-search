@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-04-04T10:39:11.887Z",
+    "end": "2021-04-04T10:39:24.008Z",
+    "duration": 12121,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e69d0fab-f4c6-4f72-9b7c-5cce47295f2a",
+      "title": "",
+      "fullFile": "cypress\\integration\\talmud-search-tests.js",
+      "file": "cypress\\integration\\talmud-search-tests.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "09e6e84d-6db3-4210-838a-776a151b0e33",
+          "title": "talmud-search-tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "HTML download",
+              "fullTitle": "talmud-search-tests HTML download",
+              "timedOut": null,
+              "duration": 11418,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "\"videos/talmud-search-tests.js.mp4\"",
+              "code": "cy.searchRun({\n  text: 'יום השישי',\n  collection: 'תלמוד',\n  language: 'Hebrew'\n});\ncy.exec(' npx rimraf cypress/downloads/*'); //cy.removeTaamim()\ncy.get('[class*=\"dropdown-toggle\"]').contains('הורדה').click();\ncy.get('p').contains('קובץ HTML').parent().within(function () {\n  cy.get('[type=\"radio\"]').check({\n    force: true\n  });\n});\ncy.get('[type=\"submit\"]').click().then(function () {\n  var filename = path.join(downloadsFolder, 'searchResults.html');\n  cy.readFile(filename, {\n    timeout: 150000\n  }).then(function (text) {\n    var count = text.match(/בבלי ומשנה/g).length;\n    cy.wrap(count).should('eq', 46);\n  });\n});",
+              "err": {},
+              "uuid": "ea569a39-f05f-4fa9-a92e-f4c2f75034ae",
+              "parentUUID": "09e6e84d-6db3-4210-838a-776a151b0e33",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ea569a39-f05f-4fa9-a92e-f4c2f75034ae"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11418,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/results/json",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "5.2.0"
+    }
+  }
+}
