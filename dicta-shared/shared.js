@@ -15,6 +15,7 @@ Cypress.Commands.add('screenSize',({size})=>{
   }
 })
 
+
 Cypress.Commands.add('visitpage',({url})=>{
   // cy.visit(url,{
   //   retryOnStatusCodeFailure: true,
@@ -34,15 +35,6 @@ Cypress.Commands.add('visitpage',({url})=>{
         Connection: "Keep-Alive"
       }
     })
-    // cy.document().then(function (doc) {
-    // doc.addEventListener('mouseover', () => {
-    //   setTimeout(function () {
-    //     doc.location.replace("https://synoptic.dicta.org.il/")
-    //   }, 15000)
-    // })
-    // cy.get(elem).contains(text).click()
-    //cy.get(elem).contains(text).click({force:true})
-  //})
     cy.wait('@webreq'+Attempts).then(()=>{
       cy.get('body').then($body=>{
         if($body.find('#home').length==0 && $body.find('[class*="main-content"]').length==0
@@ -56,24 +48,24 @@ Cypress.Commands.add('visitpage',({url})=>{
   visitpage(0)
 })
 
-  Cypress.Commands.add('setLanguageMode',({language,mobileSelector='a'})=>{
-    let languageMode
-    let classAttr
-    cy.get('body').then(elem => {
-      if(language=='Hebrew'){
-        languageMode='he'
-      }else if(language=='English'){
-        languageMode=''
-      } 
-      if(elem.attr("class").substring(0,2)=='he'|| 
-      elem.attr("class").substring(elem.attr("class").length-2)=='he'){
-        classAttr='he'
-      }else{
-        classAttr=''
-      }
-    }).then(()=>{
-      cy.url().then(url=>{
-        cy.clickLanguage('a',classAttr,languageMode,language)
+Cypress.Commands.add('setLanguageMode',({language,mobileSelector='a'})=>{
+  let languageMode
+  let classAttr
+  cy.get('body').then(elem => {
+    if(language=='Hebrew'){
+      languageMode='he'
+    }else if(language=='English'){
+      languageMode=''
+    } 
+    if(elem.attr("class").substring(0,2)=='he'|| 
+    elem.attr("class").substring(elem.attr("class").length-2)=='he'){
+      classAttr='he'
+    }else{
+      classAttr=''
+    }
+  }).then(()=>{
+    cy.url().then(url=>{
+      cy.clickLanguage('a',classAttr,languageMode,language)
         // if(Cypress.config("viewportWidth")!=1000&&mobileSelector!='a'){
         //   if(url.includes('https://dev--cranky-banach-377068.netlify.app/') || 
         //   url.includes('https://search.dicta.org.il')){
@@ -87,9 +79,9 @@ Cypress.Commands.add('visitpage',({url})=>{
         // }else {
         //   cy.clickLanguage('a',classAttr,languageMode,language)
         // }
-      })
     })
   })
+})
   
   Cypress.Commands.add('clickLanguage',(selector,classAttr,languageMode,language)=>{
     cy.then(()=>{
